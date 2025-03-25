@@ -27,23 +27,20 @@ if uploaded_file:
 
     st.subheader("✅ Fault Prediction Results")
     st.dataframe(df[["Voltage(V)", "Current(A)", "Power(W)", "Predicted Status"]])
-   
-# ✨ CSV Download Button
-import io
 
-# Convert the prediction dataframe to CSV
-csv = df[["Voltage(V)", "Current(A)", "Power(W)", "Predicted Status"]].to_csv(index=False)
-b = io.BytesIO()
-b.write(csv.encode())
-b.seek(0)
+    # ✨ CSV Download Button
+    import io
+    csv = df[["Voltage(V)", "Current(A)", "Power(W)", "Predicted Status"]].to_csv(index=False)
+    b = io.BytesIO()
+    b.write(csv.encode())
+    b.seek(0)
 
-st.download_button(
-    label="📥 Download Predictions as CSV",
-    data=b,
-    file_name="solar_fault_predictions.csv",
-    mime="text/csv"
-)
-
+    st.download_button(
+        label="📥 Download Predictions as CSV",
+        data=b,
+        file_name="solar_fault_predictions.csv",
+        mime="text/csv"
+    )
 
     # Plotting charts
     st.subheader("📈 Visualizations")
